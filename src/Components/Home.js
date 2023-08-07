@@ -8,9 +8,9 @@ import "../assets/css/vendor/socicon.css";
 import "../assets/css/vendor/swiper.min.css";
 import "../assets/css/style.css";
 import logo from "../assets/images/logo/logo.jpeg";
-import sliderImage1 from "../assets/images/slider/slider1.png"
-import sliderImage2 from '../assets/images/slider/slider2.png'
-import sliderImage3 from '../assets/images/slider/slider3.png'
+import sliderImage1 from "../assets/images/slider/slider1.png";
+import sliderImage2 from "../assets/images/slider/slider2.png";
+import sliderImage3 from "../assets/images/slider/slider3.png";
 import { Link } from "react-router-dom";
 const Home = () => {
   let swiperInstance;
@@ -28,6 +28,12 @@ const Home = () => {
     if (swiperInstance) {
       swiperInstance.slideNext();
     }
+  };
+  // Adding menu bar
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
   };
 
   const btnpressprev = () => {
@@ -89,7 +95,7 @@ const Home = () => {
                   </Link>
                 </li>
                 <li className="menu-item menu-item-has-children">
-                  <Link to={"/signin"} title="Sign Up">
+                  <Link to={"/signup"} title="Sign Up">
                     <span>Sign Up</span>
                   </Link>
                 </li>
@@ -208,9 +214,12 @@ const Home = () => {
               </div>
             </div>
             <button
-              className="main-header__nav-trigger js-main-header__nav-trigger menu-default"
+              className={`main-header__nav-trigger js-main-header__nav-trigger menu-default ${
+                menuOpen ? "menu-open" : ""
+              }`}
+              onClick={handleMenuToggle}
               aria-label="Toggle menu"
-              aria-expanded="false"
+              aria-expanded={menuOpen}
               aria-controls="main-header-nav"
             >
               <span>Menu</span>
@@ -340,10 +349,7 @@ const Home = () => {
               </div>
               <div className="swiper-slide">
                 <div className="slider-inner" data-swiper-parallax={100}>
-                  <img
-                    src={sliderImage3}
-                    alt="full_screen_image"
-                  />
+                  <img src={sliderImage3} alt="full_screen_image" />
                   <div className="swiper-content" data-swiper-parallax={2000}>
                     <div className="title-area">
                       {/* title-area */}
